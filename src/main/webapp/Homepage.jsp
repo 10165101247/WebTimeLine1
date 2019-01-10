@@ -12,6 +12,7 @@
 <%
     request.setCharacterEncoding("UTF-8");
 %>
+
 <html>
 <head>
 
@@ -24,19 +25,20 @@
         document.getElementById("demo").innerHTML=Date();
     }
 </script>
-<body bgcolor="#FFFFFF" text="#000000">
+<body background="img/bg2.jpg" >
 <p> </p>
 <p align="center">
     <b><font size="5" color="#FF6633">TimeLine </font></b>
 <form action="Publish.jsp" name="PublishForm" method="post">
-    <input type="submit" value="发布信息">
+    <input type="submit" style="width: 120px; height: 30px; background: #ef4300;"  value="发布信息">
 </form>
 </p>
 <hr size="1">
 <div align="center">
-    <input type="button" onclick="javascript:window.location.reload()" value="刷新"/>
+    <input type="button" onclick="javascript:window.location.reload()" style="background: #4FB2EF; width:60px; height:40px; font-weight: bold;"   value="刷新"/>
 </div>
 <%
+    int i=0;
     ResultSet rs;
     Connection conn = DatabaseConnect.conn();
     String sql = "select * from infos natural join users order by time desc";
@@ -57,6 +59,7 @@
         String userName;
         String information;
         do{
+            i=i+1;
             userName = rs.getString("account");
             time = rs.getString("time");
             information = rs.getString("information");
@@ -70,11 +73,11 @@
         </b></td>
     </tr>
     <tr>
-        <td><%=information%>
+        <td width='80%'><%=information%>
         </td>
-        <td>
+        <td width='20%'>
 
-            <img src="/image/<%=image%>" align="center" width="150" height="120" border="1"/>
+            <img src="img/<%=image%>" align="center" width="150" height="120" border="1"/>
         </td>
     </tr>
 
@@ -82,10 +85,15 @@
 
     <%
 
-            }while(rs.next());
+            }while(rs.next()&&i<3);
         }
     %>
+
 </table>
+
+<div align="center">
+    <a href="more.jsp">显示更多</a>
+</div>
 </div>
 </body>
 </html>

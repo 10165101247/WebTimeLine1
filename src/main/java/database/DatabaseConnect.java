@@ -10,7 +10,7 @@ public class DatabaseConnect {
         String driverName = "com.mysql.cj.jdbc.Driver";
         String dbURL = "jdbc:mysql://127.0.0.1:3306/timeline?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false";
         String username = "root";
-        String userPwd = "fujiaming123*";
+        String userPwd = "russell1123";
 
         try {
             Class.forName(driverName);

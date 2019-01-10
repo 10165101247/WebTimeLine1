@@ -100,7 +100,9 @@ public class SendMessageServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String uerName = (String)session.getAttribute("user_id");
         System.out.println(uerName);
-        this.information = new String(request.getParameter("mes_information").getBytes("ISO-8859-1"), "utf-8");
+        this.information = new String(request.getParameter("mes_information").getBytes("iso-8859-1"), "utf-8");
+        this.image= request.getParameter("imgselect");
+        System.out.println(this.information);
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String time = dateFormat.format( now );
@@ -119,7 +121,7 @@ public class SendMessageServlet extends HttpServlet {
         }
         Message message = new Message(information,image,time,uerName);
         messageDao.addMessage(message);
-        image = "";
+
         request.setAttribute("flag", "2");
         request.getRequestDispatcher("Publish.jsp").forward(request, response);
     }
